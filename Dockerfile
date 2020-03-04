@@ -9,7 +9,7 @@ ENV    LANGUAGE=en_US.UTF-8
 ENV    TZ=Asia/Shanghai
 
 ARG    installer_url="172.17.0.1:8000"
-ARG    version=2019.2
+ARG    version=2018.3
 ARG    user=plnx
 
 RUN    adduser --disabled-password --gecos '' $user
@@ -43,6 +43,9 @@ RUN    apt-get install -y -qq --no-install-recommends \
 # bash is PetaLinux recommended shell
 RUN    ln -fs /bin/bash /bin/sh
 
+COPY   sed.sh /tmp/sed
+RUN    chmod +x /tmp/sed
+
 RUN    echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER   $user
@@ -55,6 +58,7 @@ COPY   noninteractive-install.sh .
 
 RUN    wget -q ${installer_url}/petalinux-v${version}-final-installer.run    && \
        chmod a+x petalinux-v${version}-final-installer.run                   && \
+       export PATH=/tmp:$PATH                                                && \
        ./noninteractive-install.sh /opt/petalinux ${version}                 && \
        rm -rf petalinux-v${version}-final-installer.run                      && \
        rm noninteractive-install.sh
