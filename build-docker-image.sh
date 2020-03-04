@@ -29,8 +29,8 @@ if [ -f "Dockerfile" ]; then
 	echo Dockerfile exists in [${docker_context}]
 	echo
 	timestamp=`date +"%Y-%m-%d-%H-%M-%S"`
-	docker build -t sonnyhcl/petalinux:$timestamp .
-	docker tag sonnyhcl/petalinux:$timestamp sonnyhcl/petalinux:latest
+	docker build -t tux/petalinux:$timestamp .
+	docker tag tux/petalinux:$timestamp tux/petalinux:latest
 else
 	echo make sure Dockerfile exists in [${docker_context}]
 	echo
