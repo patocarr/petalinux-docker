@@ -18,7 +18,7 @@ sh get-docker.sh
 - the default working directory is `/home/plnx/project`, you can mount a host directory to persist your data.
 - the whole docker image is about 8GB, so make sure your network works in the right way.
 ```console
-docker run -ti -v `pwd`:/home/plnx/project sonnyhcl/petalinux
+docker run -ti -v `pwd`:/home/plnx/project:v sonnyhcl/petalinux
 ```
 ### what you can do in the container:
 ```
