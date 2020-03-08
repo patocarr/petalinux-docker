@@ -29,8 +29,8 @@ if [ -f "Dockerfile" ]; then
 	echo Dockerfile exists in [${docker_context}]
 	echo
 	timestamp=`date +"%Y-%m-%d-%H-%M-%S"`
-	docker build -t tux/petalinux:$timestamp .
-	docker tag tux/petalinux:$timestamp tux/petalinux:latest
+	podman build -t tux/petalinux:$timestamp .
+	podman tag tux/petalinux:$timestamp tux/petalinux:latest
 else
 	echo make sure Dockerfile exists in [${docker_context}]
 	echo
@@ -41,4 +41,4 @@ kill ${server_pid}
 echo "-------------------------------------------------------------------"
 echo "                        finish building                            "
 echo "-------------------------------------------------------------------"
-docker images | grep petalinux
+podman images | grep petalinux
