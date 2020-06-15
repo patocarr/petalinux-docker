@@ -6,10 +6,10 @@ ENV    DEBIAN_FRONTEND=noninteractive
 ENV    LC_ALL=en_US.UTF-8
 ENV    LANG=en_US.UTF-8
 ENV    LANGUAGE=en_US.UTF-8
-ENV    TZ=Asia/Shanghai
+ENV    TZ=America/Los_Angeles
 
-ARG    installer_url="172.17.0.1:8000"
-ARG    version=2018.3
+ARG    installer_url="192.168.1.148:8000"
+ARG    version=2019.2
 ARG    user=plnx
 
 RUN    adduser --disabled-password --gecos '' $user
