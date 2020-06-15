@@ -30,8 +30,7 @@ if [ -f "Dockerfile" ]; then
 	echo Dockerfile exists in [${docker_context}]
 	echo
 	timestamp=`date +"%Y-%m-%d-%H-%M-%S"`
-	podman build -t tux/petalinux:$timestamp .
-	podman tag tux/petalinux:$timestamp tux/petalinux:latest
+	podman build -t petalinux-2020:$timestamp .
 else
 	echo make sure Dockerfile exists in [${docker_context}]
 	echo

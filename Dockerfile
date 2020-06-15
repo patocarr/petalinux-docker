@@ -9,7 +9,7 @@ ENV    LANGUAGE=en_US.UTF-8
 ENV    TZ=America/Los_Angeles
 
 ARG    installer_url="192.168.1.148:8000"
-ARG    version=2019.2
+ARG    version=2020.1
 ARG    user=plnx
 
 RUN    adduser --disabled-password --gecos '' $user
