@@ -2,7 +2,7 @@
 if [ $# != 2 ]; then
 	echo "Usage:       $0 [tftp_dir] [version]"
 	echo
-	echo "for example: $0 `pwd` 2018.2"
+	echo "for example: $0 `pwd` 2021.2"
 	exit 1;
 fi
 
@@ -30,7 +30,7 @@ if [ -f "Dockerfile" ]; then
 	echo Dockerfile exists in [${docker_context}]
 	echo
 	timestamp=`date +"%Y-%m-%d-%H-%M-%S"`
-	podman build -t petalinux-2020:$timestamp .
+	podman build -t petalinux-2021:$timestamp .
 else
 	echo make sure Dockerfile exists in [${docker_context}]
 	echo

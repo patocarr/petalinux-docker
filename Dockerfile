@@ -8,8 +8,8 @@ ENV    LANG=en_US.UTF-8
 ENV    LANGUAGE=en_US.UTF-8
 ENV    TZ=America/Los_Angeles
 
-ARG    installer_url="192.168.1.148:8000"
-ARG    version=2020.1
+ARG    installer_url="192.168.1.92:8000"
+ARG    version=2021.2
 ARG    user=plnx
 
 RUN    adduser --disabled-password --gecos '' $user
@@ -28,7 +28,7 @@ RUN    dpkg --add-architecture i386    && \
        apt-get install -y -qq iputils-ping sudo rsync apt-utils x11-utils
 
 # Required tools and libraries of Petalinux.
-# See in: ug1144-petalinux-tools-reference-guide, 2019.2
+# See in: ug1144-petalinux-tools-reference-guide, 2021.2
 RUN    apt-get install -y -qq --no-install-recommends \
        tofrodos gawk xvfb gcc wget build-essential \
        tftpd git make python update-inetd \
@@ -37,7 +37,7 @@ RUN    apt-get install -y -qq --no-install-recommends \
        tar unzip texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev \
        screen pax gzip language-pack-en libtool-bin cpio lib32z1 \
        lsb-release zlib1g:i386 vim-common libgtk2.0-dev libstdc++6:i386 \
-       expect
+       expect less bc
 # # Using expect to install Petalinux automatically.
 
 # bash is PetaLinux recommended shell
