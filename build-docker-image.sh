@@ -13,24 +13,24 @@ version=$2
 cd ${tftp_dir}
 if [ -f "petalinux-v${version}-final-installer.run" ]; then
 	echo [${tftp_dir}/petalinux-v${version}-final-installer.run] exists
-	python3 -m http.server &
-	server_pid=$!
-	echo PID [${server_pid}] http.server starting...
-	echo
+  echo
 else  
 	echo make sure [petalinux-v${version}-final-installer.run] exists in the [${tftp_dir}]
 	echo
-	kill ${server_pid}
 	exit 1
 fi
+
+python3 -m http.server 8000 &
+server_pid=$!
+echo PID [${server_pid}] http.server starting...
+echo
 
 cd ${docker_context}
 if [ -f "Dockerfile" ]; then
 	echo Dockerfile exists in [${docker_context}]
 	echo
 	timestamp=`date +"%Y-%m-%d-%H-%M-%S"`
-	podman build -t tux/petalinux:$timestamp .
-	podman tag tux/petalinux:$timestamp tux/petalinux:latest
+	podman build -t petalinux-2018:$timestamp .
 else
 	echo make sure Dockerfile exists in [${docker_context}]
 	echo
