@@ -39,7 +39,7 @@ RUN    apt-get install -y -qq --no-install-recommends \
          tar unzip texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev \
          screen pax gzip language-pack-en libtool-bin cpio lib32z1 \
          lsb-release zlib1g:i386 vim-common libgtk2.0-dev libstdc++6:i386 \
-         expect less bc
+         expect less bc libtinfo5 libncurses5
 # Using expect to install Petalinux automatically.
 
 # bash is PetaLinux recommended shell
