@@ -1,4 +1,4 @@
-FROM   ubuntu:18.04
+FROM   ubuntu:20.04
 
 LABEL  maintainer="sonnyhcl@163.com"
 
@@ -9,8 +9,9 @@ ENV    LANGUAGE=en_US.UTF-8
 ENV    TZ=America/Los_Angeles
 
 ARG    installer_url="192.168.1.92:8000"
-ARG    version=2021.2
+ARG    version=2023.1
 ARG    user=plnx
+USER   root
 
 RUN    adduser --disabled-password --gecos '' $user
 
@@ -19,7 +20,6 @@ RUN    mkdir -p /opt/petalinux /home/$user/project
 RUN    chown -R $user:$user /opt/petalinux /home/$user/project
 
 # using local mirror to speed up
-# COPY /etc/apt/sources.list /etc/apt/sources.list
 COPY   sources.list /etc/apt/sources.list
 
 RUN    dpkg --add-architecture i386    && \
@@ -28,17 +28,19 @@ RUN    dpkg --add-architecture i386    && \
        apt-get install -y -qq iputils-ping sudo rsync apt-utils x11-utils
 
 # Required tools and libraries of Petalinux.
-# See in: ug1144-petalinux-tools-reference-guide, 2021.2
+# See in: ug1144-petalinux-tools-reference-guide, 2023.1
 RUN    apt-get install -y -qq --no-install-recommends \
-       tofrodos gawk xvfb gcc wget build-essential \
-       tftpd git make python update-inetd \
-       net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison \
-       libselinux1 gnupg diffstat chrpath socat xterm autoconf libtool \
-       tar unzip texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev \
-       screen pax gzip language-pack-en libtool-bin cpio lib32z1 \
-       lsb-release zlib1g:i386 vim-common libgtk2.0-dev libstdc++6:i386 \
-       expect less bc
-# # Using expect to install Petalinux automatically.
+         gcc wget \
+         build-essential \
+         tofrodos gawk xvfb \
+         tftpd git make python3 update-inetd \
+         net-tools libncurses5-dev zlib1g-dev libssl-dev flex bison \
+         libselinux1 gnupg diffstat chrpath socat xterm autoconf libtool \
+         tar unzip texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev \
+         screen pax gzip language-pack-en libtool-bin cpio lib32z1 \
+         lsb-release zlib1g:i386 vim-common libgtk2.0-dev libstdc++6:i386 \
+         expect less bc
+# Using expect to install Petalinux automatically.
 
 # bash is PetaLinux recommended shell
 RUN    ln -fs /bin/bash /bin/sh

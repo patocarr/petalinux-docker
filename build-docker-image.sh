@@ -2,7 +2,7 @@
 if [ $# != 2 ]; then
 	echo "Usage:       $0 [tftp_dir] [version]"
 	echo
-	echo "for example: $0 `pwd` 2021.2"
+	echo "for example: $0 `pwd` 2023.1"
 	exit 1;
 fi
 
