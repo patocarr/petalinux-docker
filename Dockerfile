@@ -1,4 +1,4 @@
-FROM   ubuntu:20.04
+FROM   ubuntu:18.04
 
 LABEL  maintainer="sonnyhcl@163.com"
 
@@ -40,6 +40,8 @@ RUN    apt-get install -y -qq --no-install-recommends \
          screen pax gzip language-pack-en libtool-bin cpio lib32z1 \
          lsb-release zlib1g:i386 vim-common libgtk2.0-dev libstdc++6:i386 \
          expect less bc libtinfo5 libncurses5
+#        openssl python3-pip python3-jinja2 python3-pexpect cpp patch
+#        diffutils debianutils libegl1-mesa tftp-server
 # Using expect to install Petalinux automatically.
 
 # bash is PetaLinux recommended shell
